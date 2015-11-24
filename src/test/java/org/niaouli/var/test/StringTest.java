@@ -29,6 +29,7 @@ import org.niaouli.var.VarRun;
 import org.niaouli.var.VarRunBuilder;
 
 /**
+ * Tests for the string variable definition.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
@@ -67,7 +68,7 @@ public class StringTest {
         linuxes = linuxesBuilder.build();
         errors.clear();
         os.validate(linuxes, errors);
-        assertThat(errors).containsExactly(new AppError("minLength", new Serializable[]{5, 3, "Win"}, OS_NAME));
+        assertThat(errors).containsExactly(new AppError(StringVarDef.MSG_MIN_LENGTH, new Serializable[]{5, 3, "Win"}, OS_NAME));
     }
 
     @Test
@@ -78,13 +79,12 @@ public class StringTest {
         VarRun linuxes = new VarRunBuilder(os, "Debian").build();
         errors.clear();
         os.validate(linuxes, errors);
-        assertThat(errors.isEmpty());
+        assertThat(errors).isEmpty();
 
         linuxes = new VarRunBuilder(os, "Windows").build();
         errors.clear();
         os.validate(linuxes, errors);
-        assertThat(errors.isEmpty());
-        assertThat(errors).containsExactly(new AppError("maxLength", new Serializable[]{6, 7, "Windows"}, OS_NAME));
+        assertThat(errors).containsExactly(new AppError(StringVarDef.MSG_MAX_LENGTH, new Serializable[]{6, 7, "Windows"}, OS_NAME));
     }
 
     private StringVarDef buildOsVarDef(Integer minLength, Integer maxLength) throws AppException {

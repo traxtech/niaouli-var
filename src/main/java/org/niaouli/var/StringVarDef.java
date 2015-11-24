@@ -26,10 +26,16 @@ import org.niaouli.exception.AppError;
  */
 public class StringVarDef extends VarDef implements Serializable {
 
+    public static final String MSG_MIN_LENGTH
+            = "org.niaouli.var.string.minLength";
+
+    public static final String MSG_MAX_LENGTH
+            = "org.niaouli.var.string.maxLength";
+
     private final Integer minLength;
     private final Integer maxLength;
 
-    public StringVarDef(final StringVarDefBuilder pBuilder) {
+    protected StringVarDef(final StringVarDefBuilder pBuilder) {
         super(pBuilder);
         minLength = pBuilder.getMinLength();
         maxLength = pBuilder.getMaxLength();
@@ -40,12 +46,14 @@ public class StringVarDef extends VarDef implements Serializable {
             final List<AppError> pErrors) {
         int currLength = pValue.length();
         if (minLength != null && currLength < minLength) {
-            pErrors.add(new AppError("minLength", new Serializable[]{minLength,
-                currLength, pValue}, getName()));
+            pErrors.add(new AppError(MSG_MIN_LENGTH,
+                    new Serializable[]{minLength, currLength, pValue},
+                    getName()));
         }
         if (maxLength != null && currLength > maxLength) {
-            pErrors.add(new AppError("maxLength", new Serializable[]{maxLength,
-                currLength, pValue}, getName()));
+            pErrors.add(new AppError(MSG_MAX_LENGTH,
+                    new Serializable[]{maxLength, currLength, pValue},
+                    getName()));
         }
     }
 

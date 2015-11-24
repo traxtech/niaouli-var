@@ -40,10 +40,6 @@ public abstract class VarDef implements Serializable {
 
     public final void validate(final VarRun pVarRun,
             final List<AppError> pErrors) {
-        if (pVarRun.getValues() == null) {
-            pErrors.add(new AppError("nullValues"));
-            return;
-        }
         int occurs = pVarRun.getValues().size();
         if (occurs < minCardinality) {
             pErrors.add(new AppError("minCardinality", new Serializable[]{

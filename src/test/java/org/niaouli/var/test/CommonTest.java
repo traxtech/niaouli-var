@@ -50,11 +50,19 @@ public class CommonTest {
     }
 
     @Test
+    public void testDefInRun() throws AppException {
+        StringVarDef city = buildCityVarDef(1, 1);
+        VarRun newYorkCity = new VarRunBuilder(city, "New York").build();
+        assertThat(newYorkCity.getDef()).isEqualTo("New York");
+    }
+
+    @Test
     public void testMinCardinality() throws AppException {
         StringVarDef city = buildCityVarDef(1, 1);
         List<AppError> errors = new ArrayList<AppError>();
 
         VarRun newYorkCity = new VarRunBuilder(city, "New York").build();
+        assertThat(newYorkCity.getDef()).isEqualTo("New York");
         errors.clear();
         city.validate(newYorkCity, errors);
         assertThat(errors.isEmpty());
