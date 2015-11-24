@@ -22,23 +22,45 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Variable instance.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
 public class VarRun implements Serializable {
 
+    /**
+     * Variable definition name.
+     */
     private final String def;
+    /**
+     * Variable values.
+     */
     private final List<String> values;
 
+    /**
+     * Constructs a variable instance.
+     *
+     * @param pBuilder Builder to get the values from.
+     */
     public VarRun(final VarRunBuilder pBuilder) {
         def = pBuilder.getDef().getName();
         values = new ArrayList<String>(pBuilder.getValues());
     }
 
+    /**
+     * Gets the variable definition name.
+     *
+     * @return Variable definition name.
+     */
     public final String getDef() {
         return def;
     }
 
+    /**
+     * Gets the variable values.
+     *
+     * @return Variable values.
+     */
     public final List<String> getValues() {
         return Collections.unmodifiableList(values);
     }

@@ -22,14 +22,27 @@ import java.util.List;
 import org.niaouli.exception.AppException;
 
 /**
+ * VarRun builder.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
 public class VarRunBuilder implements Serializable {
 
+    /**
+     * Variable definition.
+     */
     private VarDef def;
+    /**
+     * Variable values.
+     */
     private List<String> values = new ArrayList<String>();
 
+    /**
+     * Builds a variable instance.
+     *
+     * @return New variable instance.
+     * @throws AppException
+     */
     public final VarRun build() throws AppException {
         if (def == null) {
             throw new AppException("nullDef");
@@ -37,6 +50,9 @@ public class VarRunBuilder implements Serializable {
         return new VarRun(this);
     }
 
+    /**
+     * Empty constructor.
+     */
     public VarRunBuilder() {
 
     }

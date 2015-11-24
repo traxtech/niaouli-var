@@ -35,22 +35,48 @@ public class IntegerVarDefBuilder extends VarDefBuilder
      */
     private Integer maxValue;
 
+    /**
+     * Builds an integer variable definition.
+     *
+     * @return New integer variable definition.
+     * @throws AppException On error.
+     */
     public final IntegerVarDef build() throws AppException {
         return new IntegerVarDef(this);
     }
 
+    /**
+     * Gets the minimum allowed value of the integer value.
+     *
+     * @return Minimum allowed value of the integer value.
+     */
     public final Integer getMinValue() {
         return minValue;
     }
 
+    /**
+     * Sets the minimum allowed value of the integer value.
+     *
+     * @param pMinValue New minimum allowed value of the integer value.
+     */
     public final void setMinValue(final Integer pMinValue) {
         minValue = pMinValue;
     }
 
+    /**
+     * Gets the maximum allowed value of the integer value.
+     *
+     * @return Maximum allowed value of the integer value.
+     */
     public final Integer getMaxValue() {
         return maxValue;
     }
 
+    /**
+     * Sets the maximum allowed value of the integer value.
+     *
+     * @param pMaxValue New maximum allowed value of the integer value.
+     */
     public final void setMaxValue(final Integer pMaxValue) {
         maxValue = pMaxValue;
     }

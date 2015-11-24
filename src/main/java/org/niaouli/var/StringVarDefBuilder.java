@@ -24,25 +24,57 @@ import org.niaouli.exception.AppException;
  */
 public class StringVarDefBuilder extends VarDefBuilder {
 
+    /**
+     * Minimum allowed length of the string value.
+     */
     private Integer minLength;
+    /**
+     * Maximum allowed length of the string value.
+     */
     private Integer maxLength;
 
+    /**
+     * Buils a string variable definition.
+     *
+     * @return New string variable definition.
+     * @throws AppException On error.
+     */
     public final StringVarDef build() throws AppException {
         return new StringVarDef(this);
     }
 
+    /**
+     * Gets the minimum allowed length of the string value.
+     *
+     * @return Minimum allowed length of the string value.
+     */
     public final Integer getMinLength() {
         return minLength;
     }
 
+    /**
+     * Sets the Minimum allowed length of the string value.
+     *
+     * @param pMinLength New minimum allowed length of the string value.
+     */
     public final void setMinLength(final Integer pMinLength) {
         minLength = pMinLength;
     }
 
+    /**
+     * Gets the maximum allowed length of the string value.
+     *
+     * @return Maximum allowed length of the string value.
+     */
     public final Integer getMaxLength() {
         return maxLength;
     }
 
+    /**
+     * Sets the maximum allowed length of the string value.
+     *
+     * @param pMaxLength New maximum allowed length of the string value.
+     */
     public final void setMaxLength(final Integer pMaxLength) {
         maxLength = pMaxLength;
     }
