@@ -21,20 +21,47 @@ import java.util.List;
 import org.niaouli.exception.AppError;
 
 /**
+ * String variable definition. Used to define an string subtype for values
+ * validation.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
 public class StringVarDef extends VarDef implements Serializable {
 
+    /**
+     * Error message if a string length is lower that its allowed minimum
+     * length.
+     *
+     * Parameter 1 : Minimum allowed length. Parameter 2 : Actual length.
+     * Parameter 3 : Actual value.
+     */
     public static final String MSG_MIN_LENGTH
             = "org.niaouli.var.string.minLength";
 
+    /**
+     * Error message if a string length is greater that its allowed maximum
+     * length.
+     *
+     * Parameter 1 : Maximum allowed length. Parameter 2 : Actual length.
+     * Parameter 3 : Actual value.
+     */
     public static final String MSG_MAX_LENGTH
             = "org.niaouli.var.string.maxLength";
 
+    /**
+     * Minimum allowed length of the string value.
+     */
     private final Integer minLength;
+    /**
+     * Maximum allowed length of the string value.
+     */
     private final Integer maxLength;
 
+    /**
+     * Constructs a StringVarDef from a builder.
+     *
+     * @param pBuilder Builder to get the fields from.
+     */
     protected StringVarDef(final StringVarDefBuilder pBuilder) {
         super(pBuilder);
         minLength = pBuilder.getMinLength();
@@ -57,10 +84,20 @@ public class StringVarDef extends VarDef implements Serializable {
         }
     }
 
+    /**
+     * Gets the minimum allowed length of the string value.
+     *
+     * @return Minimum allowed length of the string value.
+     */
     public final Integer getMinLength() {
         return minLength;
     }
 
+    /**
+     * Gets the maximum allowed length of the string value.
+     *
+     * @return Maximum allowed length of the string value.
+     */
     public final Integer getMaxLength() {
         return maxLength;
     }

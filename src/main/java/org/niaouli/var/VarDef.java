@@ -21,16 +21,34 @@ import java.util.List;
 import org.niaouli.exception.AppError;
 
 /**
+ * Variable definition. Used to validate variable values.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
 public abstract class VarDef implements Serializable {
 
+    /**
+     * Variable name.
+     */
     private final String name;
+    /**
+     * Variable definition.
+     */
     private final String description;
+    /**
+     * Minimum number of values.
+     */
     private final int minCardinality;
+    /**
+     * Maximum number of values.
+     */
     private final Integer maxCardinality;
 
+    /**
+     * Constructs a VarDef from a builder.
+     *
+     * @param pBuilder Builder to get the values from.
+     */
     protected VarDef(final VarDefBuilder pBuilder) {
         name = pBuilder.getName();
         description = pBuilder.getDescription();
@@ -38,6 +56,12 @@ public abstract class VarDef implements Serializable {
         maxCardinality = pBuilder.getMaxCardinality();
     }
 
+    /**
+     * Validate a variable value(s).
+     *
+     * @param pVarRun Variable to validate.
+     * @param pErrors To append found errors to.
+     */
     public final void validate(final VarRun pVarRun,
             final List<AppError> pErrors) {
         int occurs = pVarRun.getValues().size();
@@ -54,22 +78,48 @@ public abstract class VarDef implements Serializable {
         }
     }
 
+    /**
+     * Gets the variable name.
+     *
+     * @return Variable name.
+     */
     public final String getName() {
         return name;
     }
 
+    /**
+     * Gets the variable definition.
+     *
+     * @return Variable definition.
+     */
     public final String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the minimum number of values.
+     *
+     * @return Minimum number of values.
+     */
     public final int getMinCardinality() {
         return minCardinality;
     }
 
+    /**
+     * Gets the maximum number of values.
+     *
+     * @return Maximum number of values.
+     */
     public final Integer getMaxCardinality() {
         return maxCardinality;
     }
 
+    /**
+     * Validate a value.
+     *
+     * @param pValue Value to validate.
+     * @param pErrors To append found errors to.
+     */
     protected abstract void validateValue(String pValue,
             List<AppError> pErrors);
 

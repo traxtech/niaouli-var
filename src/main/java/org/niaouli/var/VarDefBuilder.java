@@ -19,44 +19,97 @@ package org.niaouli.var;
 import java.io.Serializable;
 
 /**
+ * VarDef builder.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
 public class VarDefBuilder implements Serializable {
 
+    /**
+     * Variable name.
+     */
     private String name;
+    /**
+     * Variable definition.
+     */
     private String description;
+    /**
+     * Minimum number of values.
+     */
     private int minCardinality = 1;
+    /**
+     * Maximum number of values.
+     */
     private Integer maxCardinality = 1;
 
+    /**
+     * Gets the variable name.
+     *
+     * @return Variable name.
+     */
     public final String getName() {
         return name;
     }
 
+    /**
+     * Sets the variable name.
+     *
+     * @param pName New variable name.
+     */
     public final void setName(final String pName) {
         name = pName;
     }
 
+    /**
+     * Gets the variable description.
+     *
+     * @return Variable description.
+     */
     public final String getDescription() {
         return description;
     }
 
+    /**
+     * Sets the variable description.
+     *
+     * @param pDescription New variable description.
+     */
     public final void setDescription(final String pDescription) {
         description = pDescription;
     }
 
+    /**
+     * Gets the minimum number of values.
+     *
+     * @return Minimum number of values.
+     */
     public final int getMinCardinality() {
         return minCardinality;
     }
 
+    /**
+     * Sets the minimum number of values.
+     *
+     * @param pMinCardinality New minimum number of values.
+     */
     public final void setMinCardinality(final int pMinCardinality) {
         minCardinality = pMinCardinality;
     }
 
+    /**
+     * Gets the maximum number of values.
+     *
+     * @return Maximum number of values.
+     */
     public final Integer getMaxCardinality() {
         return maxCardinality;
     }
 
+    /**
+     * Sets the maximum number of values.
+     *
+     * @param pMaxCardinality New maximum number of values.
+     */
     public final void setMaxCardinality(final Integer pMaxCardinality) {
         maxCardinality = pMaxCardinality;
     }
