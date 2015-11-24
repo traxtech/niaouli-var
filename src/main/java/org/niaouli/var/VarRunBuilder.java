@@ -19,7 +19,6 @@ package org.niaouli.var;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.niaouli.exception.AppError;
 import org.niaouli.exception.AppException;
 
 /**
@@ -35,7 +34,6 @@ public class VarRunBuilder implements Serializable {
         if (def == null) {
             throw new AppException("nullDef");
         }
-        List<AppError> errors = new ArrayList<AppError>();
         return new VarRun(this);
     }
 
