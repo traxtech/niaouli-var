@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.niaouli.exception.AppError;
 import org.niaouli.exception.AppException;
@@ -38,6 +39,16 @@ public class CommonTest {
     private static final String CITY_DESCR = "Where to ship";
 
     @Test
+    public void testNoDef() {
+        try {
+            new VarRunBuilder().build();
+            fail();
+        } catch (AppException ex) {
+            assertThat(ex.getErrors()).containsExactly(new AppError(VarRunBuilder.MSG_NODEF));
+        }
+    }
+
+    @Test
     public void testBuilder() throws AppException {
         StringVarDef city = buildCityVarDef(null, null);
         assertThat(city).isNotNull();
@@ -53,7 +64,7 @@ public class CommonTest {
     public void testDefInRun() throws AppException {
         StringVarDef city = buildCityVarDef(1, 1);
         VarRun newYorkCity = new VarRunBuilder(city, "New York").build();
-        assertThat(newYorkCity.getDef()).isEqualTo("New York");
+        assertThat(newYorkCity.getDef()).isEqualTo(CITY_NAME);
     }
 
     @Test
@@ -62,7 +73,6 @@ public class CommonTest {
         List<AppError> errors = new ArrayList<AppError>();
 
         VarRun newYorkCity = new VarRunBuilder(city, "New York").build();
-        assertThat(newYorkCity.getDef()).isEqualTo("New York");
         errors.clear();
         city.validate(newYorkCity, errors);
         assertThat(errors.isEmpty());
