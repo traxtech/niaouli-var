@@ -40,7 +40,7 @@ public class IntegerTest {
 
     @Test
     public void testBuilder() throws AppException {
-        // Min and max copy
+        // Min and max values copy
         IntegerVarDef age = buildAgeVarDef(1, 100);
         assertThat(age).isNotNull();
         assertThat(age.getMinValue()).isEqualTo(1);

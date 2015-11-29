@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.niaouli.exception.AppError;
 import org.niaouli.exception.AppException;
@@ -40,10 +41,23 @@ public class StringTest {
 
     @Test
     public void testBuilder() throws AppException {
+        // Min and max lengths copy
         StringVarDef os = buildOsVarDef(2, 6);
         assertThat(os).isNotNull();
         assertThat(os.getMinLength()).isEqualTo(2);
         assertThat(os.getMaxLength()).isEqualTo(6);
+        // Other nominal cases
+        // Nominal cases
+        buildOsVarDef(null, 6);
+        buildOsVarDef(2, null);
+        buildOsVarDef(null, null);
+        // Min value > max value
+        try {
+            buildOsVarDef(6, 2);
+            fail();
+        } catch (AppException ex) {
+            assertThat(ex.getErrors()).containsExactly(new AppError(StringVarDefBuilder.MSG_MINMAX));
+        }
     }
 
     @Test
