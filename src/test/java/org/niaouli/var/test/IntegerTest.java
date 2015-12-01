@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.niaouli.exception.AppError;
 import org.niaouli.exception.AppException;
@@ -39,10 +40,22 @@ public class IntegerTest {
 
     @Test
     public void testBuilder() throws AppException {
+        // Min and max values copy
         IntegerVarDef age = buildAgeVarDef(1, 100);
         assertThat(age).isNotNull();
         assertThat(age.getMinValue()).isEqualTo(1);
         assertThat(age.getMaxValue()).isEqualTo(100);
+        // Nominal cases
+        buildAgeVarDef(null, 100);
+        buildAgeVarDef(21, null);
+        buildAgeVarDef(null, null);
+        // Min value > max value
+        try {
+            buildAgeVarDef(100, 21);
+            fail();
+        } catch (AppException ex) {
+            assertThat(ex.getErrors()).containsExactly(new AppError(IntegerVarDefBuilder.MSG_MINMAX));
+        }
     }
 
     @Test

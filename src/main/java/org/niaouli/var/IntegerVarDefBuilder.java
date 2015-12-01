@@ -27,6 +27,14 @@ public class IntegerVarDefBuilder extends VarDefBuilder
         implements Serializable {
 
     /**
+     * Build error message if the minimum value is greater than the maximum
+     * value.
+     *
+     * Parameter 1 : Minimum value. Parameter 2 : maximum value.
+     */
+    public static final String MSG_MINMAX
+            = "org.niaouli.var.integer.minmax";
+    /**
      * Minimum allowed value of the integer value.
      */
     private Integer minValue;
@@ -42,6 +50,9 @@ public class IntegerVarDefBuilder extends VarDefBuilder
      * @throws AppException On error.
      */
     public final IntegerVarDef build() throws AppException {
+        if (minValue != null && maxValue != null && minValue > maxValue) {
+            throw new AppException(MSG_MINMAX);
+        }
         return new IntegerVarDef(this);
     }
 

@@ -25,6 +25,14 @@ import org.niaouli.exception.AppException;
 public class StringVarDefBuilder extends VarDefBuilder {
 
     /**
+     * Build error message if the minimum value is greater than the maximum
+     * value.
+     *
+     * Parameter 1 : Minimum value. Parameter 2 : maximum value.
+     */
+    public static final String MSG_MINMAX
+            = "org.niaouli.var.string.minmax";
+    /**
      * Minimum allowed length of the string value.
      */
     private Integer minLength;
@@ -40,6 +48,9 @@ public class StringVarDefBuilder extends VarDefBuilder {
      * @throws AppException On error.
      */
     public final StringVarDef build() throws AppException {
+        if (minLength != null && maxLength != null && minLength > maxLength) {
+            throw new AppException(MSG_MINMAX);
+        }
         return new StringVarDef(this);
     }
 
