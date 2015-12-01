@@ -17,13 +17,14 @@
 package org.niaouli.var;
 
 import java.io.Serializable;
+import org.niaouli.exception.AppException;
 
 /**
  * VarDef builder.
  *
  * @author Arnaud Rolly <github@niaouli.org>
  */
-public class VarDefBuilder implements Serializable {
+public abstract class VarDefBuilder implements Serializable {
 
     /**
      * Variable name.
@@ -41,6 +42,14 @@ public class VarDefBuilder implements Serializable {
      * Maximum number of values.
      */
     private Integer maxCardinality = 1;
+
+    /**
+     * Build a variable definition.
+     *
+     * @return New variable definition.
+     * @throws AppException On error.
+     */
+    public abstract VarDef build() throws AppException;
 
     /**
      * Gets the variable name.
